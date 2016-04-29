@@ -6,10 +6,13 @@ RUN apt-get update && apt-get install -y firefox
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 
+RUN apt-get update
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository "deb http://archive.canonical.com/ trusty partner"
+RUN add-apt-repository ppa:webupd8team/java
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886; \
     apt-get update; \
     apt-get install -y --no-install-recommends  dbus-x11 \
-                                                adobe-flashplugin \
                                                 libxext-dev \
                                                 libxrender-dev \
                                                 libxtst-dev \
